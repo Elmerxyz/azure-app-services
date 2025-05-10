@@ -1,19 +1,12 @@
 const { Sequelize } = require('sequelize');
 
-console.log('Intentando conectar a:', {
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT || 3306,
-  database: process.env.DB_NAME,
-  user: process.env.DB_USER,
-  dialect: process.env.DB_DIALECT || 'mysql'
-});
-
+ 
 const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASS,
+  process.env.DB_NAME || 'productos_db',
+  process.env.DB_USER  || 'adminuser',
+  process.env.DB_PASS  || 'TuPasswordSegura',
   {
-    host: process.env.DB_HOST,
+    host: process.env.DB_HOST || '20.106.206.184' ,
     port: process.env.DB_PORT || 3306,
     dialect: process.env.DB_DIALECT || 'mysql',
     logging: false,
