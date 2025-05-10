@@ -32,7 +32,7 @@ body {
 
 header {
   background-color: var(--primary-color);
-  color: white;
+  color: rgb(253, 240, 240);
   padding: 1rem 0;
 }
 
