@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>
+
+<div class="product-detail">
+  <div class="product-card">
+    <% if (product.imagen) { %>
+      <div class="product-image">
+        <img src="<%= product.imagen %>" alt="<%= product.nombre %>">
+      </div>
+    <% } %>
+    
+    <div class="product-info">
+      <h2><%= product.nombre %></h2>
+      <p class="price">$<%= product.precio %></p>
+      <p class="stock">Stock: <%= product.stock %> unidades</p>
+      
+      <% if (product.descripcion) { %>
+        <div class="description">
+          <h3>Descripción:</h3>
+          <p><%= product.descripcion %></p>
+        </div>
+      <% } %>
+      
+      <div class="meta">
+        <p>ID: <%= product.id %></p>
+        <p>Creado: <%= product.createdAt.toLocaleDateString() %></p>
+        <p>Actualizado: <%= product.updatedAt.toLocaleDateString() %></p>
+      </div>
+      
+      <div class="actions">
+        <a href="/productos" class="btn btn-secondary">Volver</a>
+        <a href="/productos/<%= product.id %>/editar" class="btn btn-edit">Editar</a>
+        <form action="/productos/<%= product.id %>" method="POST" class="delete-form">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" class="btn btn-delete" onclick="return confirm('¿Estás seguro de eliminar este producto?')">Eliminar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

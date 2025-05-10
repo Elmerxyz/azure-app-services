@@ -1,0 +1,43 @@
+<%- include('../partials/header') %>
+
+<div class="product-list">
+  <% if (products && products.length > 0) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% products.forEach(product => { %>
+          <tr>
+            <td><%= product.id %></td>
+            <td><%= product.nombre %></td>
+            <td>$<%= product.precio %></td>
+            <td><%= product.stock %></td>
+            <td class="actions">
+              <a href="/productos/<%= product.id %>" class="btn btn-info">Ver</a>
+              <a href="/productos/<%= product.id %>/editar" class="btn btn-edit">Editar</a>
+              <form action="/productos/<%= product.id %>" method="POST" class="delete-form">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-delete" onclick="return confirm('¿Estás seguro de eliminar este producto?')">Eliminar</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p class="no-products">No hay productos registrados.</p>
+  <% } %>
+
+  <div class="actions">
+    <a href="/productos/nuevo" class="btn btn-primary">Nuevo Producto</a>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>
